@@ -13,7 +13,7 @@ network_security/
 .env
 
 # Logs
-logs/
+**/logs/
 
 # IDE
 .vscode/

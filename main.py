@@ -4,6 +4,7 @@ from networksecurity.components.data_ingestion import DataIngestion
 from networksecurity.entity.config_entity import DataIngestionConfig
 from networksecurity.entity.config_entity import TrainingPipelineConfig
 from networksecurity.exception.exception import NetworkSecurityException
+from networksecurity.logging.logger import logging 
 
 
 if __name__ == "__main__":
@@ -14,11 +15,10 @@ if __name__ == "__main__":
             trainingpipelineconfig
         )
 
-        dataingestion = DataIngestion(
-            dataingestionconfig
-        )
-
-        print("Data ingestion object created successfully")
+        dataingestion = DataIngestion(dataingestionconfig)
+        logging.info("Data ingestion started")
+        dataingestionartifact = dataingestion.initiate_data_ingestion()
+        logging.info("Data ingestion completed")
 
     except Exception as e:
         raise NetworkSecurityException(e, sys)
